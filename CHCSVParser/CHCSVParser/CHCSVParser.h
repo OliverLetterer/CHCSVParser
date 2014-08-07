@@ -3,17 +3,17 @@
 //  CHCSVParser
 /**
  Copyright (c) 2014 Dave DeLong
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, CHCSVErrorCode) {
      *  For example, perhaps a double quote is in the wrong position.
      */
     CHCSVErrorCodeInvalidFormat = 1,
-    
+
     /**
      *  When using @c CHCSVParserOptionsUsesFirstLineAsKeys, all of the lines in the file
      *  must have the same number of fields. If they do not, parsing is aborted and this error is returned.
@@ -254,7 +254,7 @@ typedef NS_ENUM(NSInteger, CHCSVErrorCode) {
 /**
  *  The designated initializer
  *
- *  @param stream    The @c NSOutputStream to which bytes will be written. 
+ *  @param stream    The @c NSOutputStream to which bytes will be written.
  *  If you wish to append to an existing file, you can provide an @c NSOutputStream that is set to append to the target file
  *  @param encoding  The byte encoding to use when writing strings to the stream
  *  @param delimiter The field delimiter to use during writing
@@ -356,6 +356,10 @@ typedef NS_OPTIONS(NSUInteger, CHCSVParserOptions) {
 
 - (id)objectAtIndexedSubscript:(NSUInteger)idx;
 - (id)objectAtIndex:(NSUInteger)idx;
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder UNAVAILABLE_ATTRIBUTE;
+- (instancetype)initWithObjects:(NSArray *)objects forKeys:(NSArray *)keys NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithObjects:(const id [])objects forKeys:(const id<NSCopying> [])keys count:(NSUInteger)cnt;
 
 @end
 
